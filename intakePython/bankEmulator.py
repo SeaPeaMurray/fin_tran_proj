@@ -4,16 +4,24 @@ class myGen:
     def __init__(self):
         self.fake = faker.Faker()
 
-    def genBank(self):
-        # 1. Bank Details
-        self.bank = self.fake.bank()
-        self.routing_number = self.fake.aba()
-        self.swift_code = self.fake.swift()
-        self.iban = self.fake.iban()
-        self.bban = self.fake.bban()
+    def genBankSending(self):
+        # 1. Sending Bank Details
+        self.sendingBank = self.fake.bank()
+        self.sendingRouting_number = self.fake.aba()
+        self.sendingSwift_code = self.fake.swift()
+        self.sendingIban = self.fake.iban()
+        self.sendingBban = self.fake.bban()
+        
+    def genBankReceiving(self):
+        # 2. ReceivingBank Details
+        self.receivingBank = self.fake.bank()
+        self.receivingRouting_number = self.fake.aba()
+        self.receivingSwift_code = self.fake.swift()
+        self.receivingIban = self.fake.iban()
+        self.receivingBban = self.fake.bban()
         
     def genCreditCard(self):
-        # 2. Credit Card Details
+        # 3. Credit Card Details
         self.credit_card = self.fake.credit_card_full()
         self.card_type = self.fake.credit_card_provider()
         self.card_number = self.fake.credit_card_number(card_type='visa') # Revisit card type
@@ -21,7 +29,7 @@ class myGen:
         self.security_code = self.fake.credit_card_security_code()
         
     def genTransaction(self):
-        # 3. Transaction Details
+        # 4. Transaction Details
         self.transaction_id = self.fake.uuid4()
         self.amount = self.fake.pydecimal(left_digits=3, right_digits=2, positive=True) # Revisit decimal
         self.currency = self.fake.currency_code()

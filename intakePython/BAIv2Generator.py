@@ -1,6 +1,8 @@
 import faker
 import re
 from formattingFunctions import createFourLengthCode as makeFour
+from formattingFunctions import formatDate
+from formattingFunctions import formatTime
 
 
 class BAIv2Gen:
@@ -11,8 +13,8 @@ class BAIv2Gen:
     def genBAIv2FileHeader(self, genObj):
         bankCodeSending = makeFour(genObj.sendingBank)
         bankCodeReceiving = makeFour(genObj.receivingBank)
-        fileHeaderDate = genObj.date
-        fileHeaderTime = genObj.time
+        fileHeaderDate = formatDate(genObj.date)
+        fileHeaderTime = formatTime(genObj.time)
         self.fileHeader = (
             "01,"
             + bankCodeSending
@@ -33,10 +35,13 @@ class BAIv2Gen:
         pass
 
     def genBAIv2Transaction(self, genObj):
-        pass
+        self.transactionDetail = "16," + "000," + str(genObj.amount)
 
     def genBAIv2GroupTrailer(self, genObj):
         pass
 
     def genBAIv2FileTrailer(self, genObj):
+        pass
+
+    def genBAIv2Complete(self, genObj):
         pass

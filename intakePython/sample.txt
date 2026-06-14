@@ -1,3 +1,4 @@
+BAIv2 File Format - Section Names and Corresponding Values
 Pasted from: https://developer.gs.com/docs/services/transaction-banking/bai-file/
 
 01,GSBI,ABC,200331,2300,1,,,2/
@@ -8,3 +9,80 @@ Pasted from: https://developer.gs.com/docs/services/transaction-banking/bai-file
 49,11000,2/
 98,12000,2,5/
 99,22000,2,10/ 
+
+--- 01 File Header ---
+Record Code: 01
+Sender Identification: GSBI
+Receiver Identification: Client ID
+File Creation Date: YYMMDD Format
+File Creation Time: Military Format (2400)
+File Identification Number: Unique File ID
+Physical Record Length: Optional
+Block Size: Optional
+Version Number: 2
+
+--- 02 Group Header ---
+Record Code: 02
+Ultimate Receiver ID: test (Sample) / Receiver ID
+Originator ID: 026015079 (Sample) / Originator ID
+Group Status: 1 (Update)
+As-of-date: YYMMDD Format
+As-of-time: Time of Origination
+Currency Code: Optional
+As-of-Date Modifier: 2(For Prior day EOD Report), 3(For Intraday Report), Not populated for current day EOD Report
+
+--- 03 Account Identifier ---
+Record Code: 03
+Customer Account Number: Account Number
+Currency Code: Account Currency(ISO)
+Type Code: Refer Appendix
+Amount: Amount for the Value Reported
+Item Code: As per the table on the right
+Funds Type: Won't populate
+
+--- 16 Transaction Detail ---
+Record Code: 16
+Type Code: Refer Appendix - Details of Transaction Type Code
+Amount: Amount
+Funds Type: Optional
+Bank Reference Number: GS Unique Payment ID(GS UPI)
+Customer Reference Number: end to End ID
+Text: Transaction Description
+
+--- 88 Continuation Record ---
+Record Code: 88
+Text: Any additional info on the record; that could not be completed in the original preceding record. Includes tags like:
+  - End to End ID-EREF
+  - Clearing System Reference-CREF
+  - Debtor's Name-DBNM
+  - Creditor's Name-CRNM
+  - Receiver's Identification Number(ACH)-IDNM
+  - Counterparty Account Number-CACT/DACT
+  - Creditor ABA Number-CABA
+  - Debtor ABA Number-DABA
+  - Remittance/Addenda-REMI
+  - Category Purpose/NACHA Company Entry Description
+  - Debtor Customer ID/Company ID-DCID
+  - Creditor Customer ID/Company ID-CCID
+  - Company Discretionary Data-CPDD
+  - Original Category Purpose-OPRP
+  - Ultimate Debtor Name-UDNM
+  - Status Reason Code-RSCD
+  - Reason Description-RSDS
+
+--- 49 Account Trailer ---
+Record Code: 49
+Account Control Total: Numerical sum of all amounts in the payment reports
+Number of Records: Total number of records in the account envelop
+
+--- 98 Group Trailer ---
+Record Code: 98
+Group Control Total: Numerical sum of all account control totals
+Number of accounts: Total number of accounts reported in the group
+Number of records: Total number of records in the group envelop
+
+--- 99 File Trailer ---
+Record Code: 99
+File Control Total: Numerical sum of all group control totals
+Number of Groups: Total number of groups reported in the file
+Number of Records: Total number of records in the file envelop

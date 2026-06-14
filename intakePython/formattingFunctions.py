@@ -6,8 +6,8 @@ def createFourLengthCode(nameToSplit):
     try:
         for index, word in enumerate(nameToSplitDone):
             if len(word) == 4 and word.lower() != "bank":
-                    nameCode = word
-            if nameCode is None and index == len(nameToSplitDone) - 1:
+                    nameCode = word.upper()
+            elif nameCode is None and index == len(nameToSplitDone) - 1:
                 nameCode = max(nameToSplitDone, key=len)[:4].upper()
     except:
         nameCode = "XXXX" 

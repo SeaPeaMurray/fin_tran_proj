@@ -1,0 +1,10 @@
+Pasted from: https://developer.gs.com/docs/services/transaction-banking/bai-file/
+
+01,GSBI,ABC,200331,2300,1,,,2/
+02,test,026015079,1,230906,2000,,/
+03,123456,USD,010,10000,,,/
+16,495,1000,,I1220012,endtoendID,To: Payee account, Account: XXXXX-4454, Client Ref ID: endtoendID, GS ID:I1220012/
+88,CREF: 9f4396bd-8c47-4893-8682-bd8ff006d140
+49,11000,2/
+98,12000,2,5/
+99,22000,2,10/ 

@@ -1,0 +1,11 @@
+from BAIv2ObjectGenerator import BAIv2Gen
+from bankEmulator import myGen
+
+myGen = myGen()
+myReport = BAIv2Gen()
+
+myReport.genTest()
+
+myReport.genAllObjects(myGen)
+print(myReport.myTransactions)
+print(myReport)

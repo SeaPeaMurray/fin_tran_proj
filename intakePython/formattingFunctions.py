@@ -25,3 +25,9 @@ def formatTime(timeString):
     # Example format: "14:30:00" -> "1430"
     timeParts = timeString.split(":")
     return f"{timeParts[0]}{timeParts[1]}"
+
+
+def formatNegativeTransaction(amount):
+    if amount < 0:
+        newAmount = round(np.abs(amount))
+    return newAmount

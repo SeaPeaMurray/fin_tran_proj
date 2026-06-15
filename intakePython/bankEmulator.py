@@ -5,7 +5,6 @@ import numpy as np
 class myGen:
     def __init__(self):
         self.fake = faker.Faker()
-        # self.transactionDistribution = np.random.normal(2, 1, 1000)
 
     def genBankSending(self):
         # 1. Sending Bank Details
@@ -36,11 +35,7 @@ class myGen:
     def genTransaction(self):
         # 4. Transaction Details
         self.transaction_id = self.fake.uuid4()
-        self.amount = round(np.random.normal(100, 50), 2)  # Negative possible?
+        self.amount = round(np.random.normal(100, 49), 2)  # Negative possible?
         self.currency = self.fake.currency_code()
         self.date = self.fake.date()
         self.time = self.fake.time()
-
-
-testValue = np.random.normal(100, 50)
-print(round(testValue, 2))
